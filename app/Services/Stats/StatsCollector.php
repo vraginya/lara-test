@@ -2,6 +2,7 @@
 
 namespace App\Services\Stats;
 
+use App\Models\Appointment;
 use App\Services\Stats\Behaviors\AbstractStatsCollectorBehavior;
 
 class StatsCollector
@@ -11,12 +12,12 @@ class StatsCollector
     {
     }
 
-    public function collect(): void
+    public function collect(Appointment $appointment): void
     {
         if (!$this->behavior) {
             throw new \Exception('Behavior is not set');
         }
 
-        $this->behavior->doCollect();
+        $this->behavior->doCollect($appointment);
     }
 }
